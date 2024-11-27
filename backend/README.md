@@ -1,4 +1,4 @@
-### `npm install` or `yarn install`
+### `npm install`
 Installs all the dependencies in package.json.
 
 ### Set NODE_ENV to "development"
@@ -14,5 +14,5 @@ Bash:
 NODE_ENV="development"
 ```
 
-### `ts-node server.ts`
+### `npm start`
 Runs the backend server.

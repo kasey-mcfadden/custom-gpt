@@ -9,9 +9,19 @@ let clientInstance: AzureOpenAI | null = null;
 
 function getClient(): AzureOpenAI {
   if (!clientInstance) {
-    if (!endpoint || !apiKey) {
-      throw new Error("Missing required environment variables: AZURE_OPENAI_ENDPOINT or AZURE_OPENAI_API_KEY");
+    if (!endpoint) {
+      throw new Error("Missing required environment variable: AZURE_OPENAI_ENDPOINT");
     }
+    if (!apiKey) {
+      throw new Error("Missing required environment variable: AZURE_OPENAI_API_KEY");
+    }
+    if (!apiVersion) {
+      throw new Error("Missing required environment variable: AZURE_OPENAI_API_VERSION");
+    }
+    if (!modelDeployment) {
+      throw new Error("Missing required environment variable: AZURE_OPENAI_MODEL_DEPLOYMENT");
+    }
+
     clientInstance = new AzureOpenAI({ 
       endpoint, 
       apiKey, 

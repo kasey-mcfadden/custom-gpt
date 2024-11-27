@@ -1,25 +1,29 @@
-{
-  "name": "custom-gpt",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Kasey McFadden",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/express-session": "^1.18.0",
-    "@types/node": "^22.5.5",
-    "express-session": "^1.18.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
-  },
-  "dependencies": {
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "express": "^4.21.0"
-  }
+{  
+  "name": "custom-gpt",  
+  "version": "1.0.0",  
+  "description": "",  
+  "main": "server.ts",  
+  "scripts": {  
+    "start": "npx ts-node server.ts",  
+    "test": "echo \"Error: no test specified\" && exit 1"  
+  },  
+  "keywords": [],  
+  "author": "Kasey McFadden",  
+  "license": "ISC",  
+  "devDependencies": {  
+    "@types/cors": "^2.8.17",  
+    "@types/express-session": "^1.18.0",  
+    "@types/node": "^22.5.5",  
+    "express-session": "^1.18.0",  
+    "ts-node": "^10.9.2",  
+    "typescript": "^5.6.2"  
+  },  
+  "dependencies": {  
+    "body-parser": "^1.20.3",  
+    "cors": "^2.8.5",  
+    "express": "^4.21.0"  
+  },  
+  "engines": {  
+    "node": ">=14.0.0 <19.0.0"  
+  }  
 }

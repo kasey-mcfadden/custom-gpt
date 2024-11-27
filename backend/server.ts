@@ -1,13 +1,13 @@
-import cors from 'cors';
-import express, { Request, Response } from 'express';
-import { getClient } from './openAiClient';
-
 const isLocal = process.env.NODE_ENV === "development";
 
 if (isLocal) {
   console.log("Running in development mode. Loading .env file...");
   require("dotenv").config();
 }
+
+import cors from 'cors';
+import express, { Request, Response } from 'express';
+import { getClient } from './openAiClient';
 
 const app = express();
 const port = process.env.PORT;
