@@ -11,7 +11,7 @@ $env:NODE_ENV="development"
 Bash:
 
 ```bash
-VARNAME="my value"
+NODE_ENV="development"
 ```
 
 ### `ts-node server.ts`
