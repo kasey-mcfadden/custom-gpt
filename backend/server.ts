@@ -1,7 +1,29 @@
 import cors from 'cors';
 import express, { Request, Response } from 'express';
-import session from 'express-session';
 import { getClient } from './openAiClient';
+
+const isLocal = process.env.NODE_ENV === "development";
+
+if (isLocal) {
+  console.log("Running in development mode. Loading .env file...");
+  require("dotenv").config();
+}
+
+const app = express();
+const port = process.env.PORT;
+const allowedOrigins = [process.env.FRONTEND_URL]
+
+app.use(express.json());
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 
 declare module 'express-session' {
   interface SessionData {
@@ -9,18 +31,12 @@ declare module 'express-session' {
   }
 }
 
-const app = express();
-const port = 3001;
-
-app.use(cors());
-app.use(express.json());
-
 app.post("/chat", async (req: Request, res: Response): Promise<void> => {
   const userMessages = req.body.messages;
 
   if (!userMessages) {
+    console.log(`[400] Invalid message format: ${JSON.stringify(req.body)}`);
     res.status(400).send("Invalid message format");
-    console.log("400 Invalid message format");
     return;
   }
 
@@ -28,7 +44,7 @@ app.post("/chat", async (req: Request, res: Response): Promise<void> => {
     const client = getClient();
     const result = await client.chat.completions.create({
       messages: req.body.messages,
-      model: "gpt-4o",
+      model: `${process.env.AZURE_OPENAI_MODEL_DEPLOYMENT}`,
     });
     
     const response = result.choices
@@ -37,8 +53,8 @@ app.post("/chat", async (req: Request, res: Response): Promise<void> => {
 
     res.json({ response });
   } catch (err) {
-    console.error("Encountered an error:", err);
-    res.status(500).send("An error occurred");
+    console.error(`[500] Error occurred: ${err}`);
+    res.status(500).send("An internal server error occurred");
   }
 });
 
