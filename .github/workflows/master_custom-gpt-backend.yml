@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'backend/**' # Trigger only when files in the /backend directory are changed
   workflow_dispatch:
 
 jobs:
@@ -69,5 +71,5 @@ jobs:
         with:
           app-name: 'custom-gpt-backend'
           slot-name: 'Production'
-          package: ./backend
+          package: .
           
