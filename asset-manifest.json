@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/custom-gpt/frontend/static/css/main.535e6b89.css",
+    "main.js": "/custom-gpt/frontend/static/js/main.c48eca96.js",
+    "static/js/453.bc1aaf73.chunk.js": "/custom-gpt/frontend/static/js/453.bc1aaf73.chunk.js",
+    "index.html": "/custom-gpt/frontend/index.html",
+    "main.535e6b89.css.map": "/custom-gpt/frontend/static/css/main.535e6b89.css.map",
+    "main.c48eca96.js.map": "/custom-gpt/frontend/static/js/main.c48eca96.js.map",
+    "453.bc1aaf73.chunk.js.map": "/custom-gpt/frontend/static/js/453.bc1aaf73.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.535e6b89.css",
+    "static/js/main.c48eca96.js"
+  ]
+}
