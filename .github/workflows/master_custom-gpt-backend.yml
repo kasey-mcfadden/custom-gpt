@@ -8,7 +8,7 @@ on:
     branches:
       - master
     paths:
-      - 'backend/**' # Trigger only when files in the /backend directory are changed
+      - "backend/**" # Trigger only when files in the /backend directory are changed
   workflow_dispatch:
 
 jobs:
@@ -21,13 +21,13 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
       - name: npm install, build, and test
         working-directory: ./backend
         run: |
           npm install
-          npm run build --if-present
+          npm run build
           npm run test --if-present
 
       - name: Zip artifact for deployment
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Production'
+      name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
@@ -57,7 +57,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -65,11 +65,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_5EC351BBE9BF4A9996B65E8FA4316C2D }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_10EDDE9FD8C14E40BE14113647F9C879 }}
 
-      - name: 'Deploy to Azure Web App'
+      - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'custom-gpt-backend'
-          slot-name: 'Production'
+          app-name: "custom-gpt-backend"
+          slot-name: "Production"
           package: .
-          
