@@ -5,6 +5,9 @@ import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import './App.css';
 
+const backendUrl = "https://custom-gpt-backend-g4f4axg0btb9echh.westus-01.azurewebsites.net";
+
+
 interface Message {
   role: 'user' | 'assistant' | 'system';
   content: string;
@@ -39,7 +42,7 @@ const App: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3001/chat', {
+      const response = await fetch(`${backendUrl}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: updatedMessages }),
